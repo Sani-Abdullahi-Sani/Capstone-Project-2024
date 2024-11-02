@@ -15,7 +15,7 @@ Our methodology follows the DARPA framework and includes:
 - Modeling Phase: Training both interpretable (RF, DT, XGBoost) and black-box (MLP, CNN) models.
 - Post-modeling Phase: Evaluating and interpreting model outputs with Explainable AI techniques such as LIME, and SHAP.
 
-![Process Flow]([images/iot_security_architecture.png](https://drive.google.com/file/d/12pHe4Lw-LtNnY4WMWwfWmUdREhUi1XbG/view?usp=sharing))
+![IDS Process Flow](images/IDS_Flow_process.png)
 
 
 ## Dataset
@@ -42,6 +42,32 @@ The datasets used for this project include:
 | F1-Score        | 99.44   | 99.54   | 99.62   | 95.06   | 98.24   |
 
 ## Explainbality
+
+### Decision Tree
+- Explainability: Decision Trees are inherently interpretable due to their simple, rule-based structure. Each node in the tree represents a decision based on a feature threshold, leading to a prediction at the leaves.
+- How to Understand: You can visualize the entire tree structure to see the sequence of decisions leading to each outcome. This gives a clear path from input features to the prediction, allowing you to understand precisely which conditions triggered the prediction.
+
+
+<img src="images/DT_visual.png" alt="Visualising the DT Tree" width="10" height="20">
+
+
+### Random Forest
+- Explainability: A Random Forest is an ensemble of Decision Trees, so individual trees remain interpretable. However, the ensemble nature makes the overall model more complex.
+- How to Understand: Feature importance scores are commonly used with Random Forests to indicate which features contribute most to predictions. By analyzing the importance scores, you can see the dominant features that influence the model’s decisions, even though the path to each prediction isn’t as clear as in a single Decision Tree.
+![RF Tree](images/RF_tree_2.png)
+
+![Feature Importance](images/RF_feature.png)
+
+### Convolutional Neural Network (CNN)
+- Explainability: CNNs are black-box models, making it difficult to interpret their internal workings directly because they learn abstract representations of data through layers of transformations. So for that reason, we use SHAP and LIME.
+
+### LIME (Local Interpretable Model-agnostic Explanations)
+- Explainability: LIME approximates a complex model with an interpretable model locally around each prediction, making it useful for any black-box model, including CNNs and MLPs.
+![LIME Prediction for CNN Model](images/unsw_explain.PNG)
+
+### SHAP (SHapley Additive exPlanations)
+- Explainability: SHAP values provide a game-theoretic approach to explainability, showing the contribution of each feature to the model's prediction across the entire dataset.
+![SHAP Values](images/shap_values.png)
 
 
 
